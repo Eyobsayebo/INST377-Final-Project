@@ -1,33 +1,37 @@
-const http = require('http');
-const fs = require('fs');
-const url = require('url');
-const path = require('path');
-
+const fetch = require("node-fetch");
+const cors = require("cors");
+const express = require("express");
+const app = express();
 const port = 3000;
 
-const server = http.createServer(function (req, res) {
-  // Parse the request URL
-  const parsedUrl = url.parse(req.url, true);
-
-  // Extract the path from the URL
-  const pathname = parsedUrl.pathname;
-
-  // Map the path to the corresponding HTML file
-  const filePath = path.join(__dirname, pathname === '/' ? 'index.html' : `${pathname}.html`);
-
-  // Check if the file exists
-  fs.readFile(filePath, function (error, data) {
-    if (error) {
-      res.writeHead(404, { 'Content-Type': 'text/plain' });
-      res.write('Error: File Not Found');
-    } else {
-      res.writeHead(200, { 'Content-Type': 'text/html' });
-      res.write(data);
-    }
-    res.end();
-  });
+app.use(express.static("public"));
+app.use(cors());
+app.get("/", (req, res) => {
+  res.sendFile("index.html", { root: __dirname });
 });
 
-server.listen(port, function () {
+app.get("/about", (req, res) => {
+  res.sendFile("about.html", { root: __dirname });
+});
+
+app.get("/help", (req, res) => {
+  res.sendFile("help.html", { root: __dirname });
+});
+
+// Endpoint to fetch stock symbols
+app.get("/api/stock-symbols", async (req, res) => {
+  try {
+    const apiKey = "clse4b1r01qoidjepctgclse4b1r01qoidjepcu0";
+    const apiUrl = `https://finnhub.io/api/v1/stock/symbol?exchange=US&token=clse5fpr01qoidjepeg0clse5fpr01qoidjepegg`;
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error("An error occurred:", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
