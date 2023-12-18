@@ -2,20 +2,23 @@ const fetch = require("node-fetch");
 const cors = require("cors");
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = 4000;
 
 app.use(express.static("public"));
 app.use(cors());
 app.get("/", (req, res) => {
-  res.sendFile("index.html", { root: __dirname });
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+  //res.sendFile("index.html", { root: __dirname });
 });
 
 app.get("/about", (req, res) => {
-  res.sendFile("about.html", { root: __dirname });
+  res.sendFile(path.join(__dirname, "public", "about.html"));
+  //res.sendFile("about.html", { root: __dirname });
 });
 
 app.get("/help", (req, res) => {
-  res.sendFile("help.html", { root: __dirname });
+  res.sendFile(path.join(__dirname, "public", "help.html"));
+  //res.sendFile("help.html", { root: __dirname });
 });
 
 // Endpoint to fetch stock symbols

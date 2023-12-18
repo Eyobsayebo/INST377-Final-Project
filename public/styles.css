@@ -8,7 +8,7 @@ header {
   background-color: #3e053e;
   color: #fff;
   text-align: center;
-  padding: 0.5rem;
+  padding: 0.9rem;
   position: relative;
 }
 footer {
@@ -84,6 +84,13 @@ button {
 .stock-icon:hover {
   filter: brightness(1.4);
 }
+#PopularStocks {
+  color: #007bff; 
+  font-family: 'Arial', sans-serif;
+  font-size: 24px; 
+  text-decoration: none; 
+  padding: 20px;
+}
 
 /* Apple button style */
 .stock-icon:nth-child(1) {
@@ -93,7 +100,7 @@ button {
 
 /* Google button style */
 .stock-icon:nth-child(2) {
-  background-color: #4285f4;
+  background-color: #0a61ee;
   color: #fff;
 }
 
@@ -107,4 +114,41 @@ button {
 .stock-icon:nth-child(4) {
   background-color: #ff9900;
   color: #fff;
+}
+/* Tesla button style */
+.stock-icon:nth-child(5) {
+  background-color: #00ff2a;
+  color: #fff;
+}
+/* Netflix button style */
+.stock-icon:nth-child(6) {
+  background-color: rgb(214, 21, 21);
+  color: #fff;
+}
+#search-button {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#search-button:hover {
+  background-color: #2980b9;
+}
+/* Apply styles to the label */
+label[for="stock-search"] {
+  font-size: 16px; 
+  font-weight: bold;
+  color: #333; 
+  margin-right: 10px; 
+}
+
+/* Apply styles to the select element */
+#stock-search {
+  font-size: 16px; 
+  padding: 8px; 
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
 }
